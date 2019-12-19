@@ -1,0 +1,26 @@
+<div class="container">
+	<h1 *ngIf="!winner && !gameOver" [ngClass]="player === 'X' ? 'x' : 'o'">
+		{{ player }} turn
+	</h1>
+
+	<main *ngIf="!gameOver; else results">
+		<app-tile
+			*ngFor="let tile of tiles; let i = index"
+			[tile]="tile"
+			(click)="triggerMove(i)"
+		></app-tile>
+	</main>
+
+	<button class="restart-game" (click)="startNewGame()">
+		Restart Game
+	</button>
+</div>
+
+<ng-template #results>
+	<h1 class="winner" *ngIf="winner">{{ winner }} is winner!</h1>
+
+	<div class="draw" *ngIf="draw">
+		<h1 class="x">X<span class="o">O</span></h1>
+		<h3>draw</h3>
+	</div>
+</ng-template>
