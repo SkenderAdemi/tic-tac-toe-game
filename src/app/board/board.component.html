@@ -1,5 +1,8 @@
 <div class="container">
-	<h1 *ngIf="!winner && !gameOver" [ngClass]="player === 'X' ? 'x' : 'o'">
+	<h1
+		*ngIf="!winner && !gameOver"
+		[ngClass]="player === 'X' ? 'x-style' : 'o-style'"
+	>
 		{{ player }} turn
 	</h1>
 
@@ -27,7 +30,7 @@
 	<h1 class="winner" *ngIf="winner">{{ winner }} player is winner!</h1>
 
 	<div class="draw" *ngIf="draw">
-		<h1 class="x">X<span class="o">O</span></h1>
+		<h1 class="x-style">X<span class="o-style">O</span></h1>
 		<h3>draw</h3>
 	</div>
 </ng-template>

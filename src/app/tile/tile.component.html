@@ -1,3 +1,6 @@
-<button [disabled]="winner || draw" [ngClass]="tile === 'X' ? 'x' : 'o'">
+<button
+	[disabled]="winner || draw"
+	[ngClass]="tile === 'X' ? 'x-style' : 'o-style'"
+>
 	{{ tile }}
 </button>
