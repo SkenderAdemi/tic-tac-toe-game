@@ -14,9 +14,6 @@ export class BoardComponent implements OnInit {
 
 	gameOver = false;
 
-	// error message
-	errorMessage: string;
-
 	constructor() {}
 
 	ngOnInit() {
@@ -25,9 +22,11 @@ export class BoardComponent implements OnInit {
 
 	startNewGame() {
 		this.tiles = Array(9).fill(null);
+
 		this.xIsNext = true;
+
 		this.winner = null;
-		this.errorMessage = null;
+
 		this.gameOver = false;
 	}
 
@@ -43,7 +42,8 @@ export class BoardComponent implements OnInit {
 			this.xIsNext = !this.xIsNext;
 		}
 
-		let myfilter = this.tiles.filter(item => item !== null);
+		// filter tiles array to check if the board is filled
+		let boardTiles = this.tiles.filter(item => item !== null);
 
 		if (this.checkForWinner(this.tiles[id])) {
 			setTimeout(() => {
@@ -51,7 +51,7 @@ export class BoardComponent implements OnInit {
 
 				this.gameOver = true;
 			}, 700);
-		} else if (myfilter.length === 9) {
+		} else if (boardTiles.length === 9) {
 			setTimeout(() => {
 				this.draw = true;
 
@@ -60,11 +60,12 @@ export class BoardComponent implements OnInit {
 		}
 	}
 
-	// check for the winner method
+	// check for the winner *method*
 	checkForWinner(move) {
 		let result = false;
 
-		const lines = [
+		// Array of moving steps for each row, column and diagonal for each player
+		const movingSteps = [
 			[0, 1, 2],
 			[3, 4, 5],
 			[6, 7, 8],
@@ -75,8 +76,8 @@ export class BoardComponent implements OnInit {
 			[2, 4, 6]
 		];
 
-		for (let i = 0; i < lines.length; i++) {
-			const [a, b, c] = lines[i];
+		for (let i = 0; i < movingSteps.length; i++) {
+			const [a, b, c] = movingSteps[i];
 
 			if (this.checkRow(a, b, c, move)) {
 				result = true;
