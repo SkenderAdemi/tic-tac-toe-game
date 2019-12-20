@@ -14,12 +14,12 @@
 	}
 
 	.winner {
-		font-size: 100px;
+		font-size: 70px;
 		text-align: center;
 		color: #ff8a00;
 	}
 
-	.restart-game {
+	button {
 		width: 250px;
 		height: 40px;
 		color: white;
@@ -33,6 +33,11 @@
 
 		&:hover {
 			cursor: pointer;
+		}
+
+		&.back-to-results {
+			background: #001628;
+			margin-left: 20px;
 		}
 	}
 

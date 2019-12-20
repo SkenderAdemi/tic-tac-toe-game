@@ -7,4 +7,6 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TileComponent {
 	@Input() tile;
+	@Input() winner;
+	@Input() draw;
 }

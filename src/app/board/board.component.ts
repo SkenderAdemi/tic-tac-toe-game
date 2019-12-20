@@ -14,6 +14,9 @@ export class BoardComponent implements OnInit {
 
 	gameOver = false;
 
+	// error message
+	errorMessage: string;
+
 	constructor() {}
 
 	ngOnInit() {
@@ -24,6 +27,7 @@ export class BoardComponent implements OnInit {
 		this.tiles = Array(9).fill(null);
 		this.xIsNext = true;
 		this.winner = null;
+		this.errorMessage = null;
 		this.gameOver = false;
 	}
 
@@ -31,6 +35,7 @@ export class BoardComponent implements OnInit {
 		return this.xIsNext ? 'X' : 'O';
 	}
 
+	// trigger move of each player
 	triggerMove(id: number) {
 		if (!this.tiles[id]) {
 			this.tiles.splice(id, 1, this.player);
@@ -41,16 +46,21 @@ export class BoardComponent implements OnInit {
 		let myfilter = this.tiles.filter(item => item !== null);
 
 		if (this.checkForWinner(this.tiles[id])) {
-			this.winner = this.tiles[id];
+			setTimeout(() => {
+				this.winner = this.tiles[id];
 
-			this.gameOver = true;
+				this.gameOver = true;
+			}, 700);
 		} else if (myfilter.length === 9) {
-			this.draw = true;
+			setTimeout(() => {
+				this.draw = true;
 
-			this.gameOver = true;
+				this.gameOver = true;
+			}, 700);
 		}
 	}
 
+	// check for the winner method
 	checkForWinner(move) {
 		let result = false;
 
@@ -75,6 +85,7 @@ export class BoardComponent implements OnInit {
 		return result;
 	}
 
+	// check row
 	checkRow(a, b, c, move) {
 		let result = false;
 

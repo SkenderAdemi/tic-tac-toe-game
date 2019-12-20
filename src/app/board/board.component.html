@@ -7,17 +7,24 @@
 		<app-tile
 			*ngFor="let tile of tiles; let i = index"
 			[tile]="tile"
+			[winner]="winner"
+			[draw]="draw"
 			(click)="triggerMove(i)"
 		></app-tile>
 	</main>
+	<div class="action-buttons">
+		<button class="restart-game" (click)="startNewGame()">
+			Restart Game
+		</button>
 
-	<button class="restart-game" (click)="startNewGame()">
-		Restart Game
-	</button>
+		<button *ngIf="gameOver" class="back-to-results" (click)="gameOver = false">
+			Back to results
+		</button>
+	</div>
 </div>
 
 <ng-template #results>
-	<h1 class="winner" *ngIf="winner">{{ winner }} is winner!</h1>
+	<h1 class="winner" *ngIf="winner">{{ winner }} player is winner!</h1>
 
 	<div class="draw" *ngIf="draw">
 		<h1 class="x">X<span class="o">O</span></h1>
